@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VOICE IN THE SKY</title>
+    <style>
+      * {
+        user-select: none;
+        font-family: "Roboto", sans-serif;
+        transition: 3s;
+      }
+
+      .wht-txt {
+        color: #fff;
+      }
+
+      .rd-txt {
+        color: #210951;
+      }
+
+      body {
+        background: #e63a3a;
+        height: 100%;
+        display: grid;
+        overflow-x: hidden;
+      }
+
+      .app {
+        margin: auto;
+        padding: 10px 15px 0px 15px;
+        background: #210951;
+        border-radius: 20px;
+      }
+      .app .arrow {
+        margin-top: 10px;
+        font-weight: 100;
+      }
+      .app .title {
+        padding-right: 40px;
+      }
+      .app .date {
+        font-size: 0.7em;
+        margin-top: -15px;
+      }
+      .app .ticket {
+        margin-top: 40px;
+        background: #fff;
+        border-radius: 10px;
+        padding: 10px 15px 10px 15px;
+      }
+      .app .ticket .airline .rd-txt {
+        font-weight: 700;
+        padding-right: 50px;
+      }
+      .app .ticket .airline h6 {
+        margin-top: -15px;
+      }
+      .app .ticket .airline .from-to {
+        margin-top: -20px;
+        display: flex;
+        gap: 50px;
+      }
+      .app .ticket .airline .from-to i {
+        margin-top: 15px;
+        color: #210951;
+        font-size: 1.5em;
+      }
+      .app .ticket .airline .time {
+        display: flex;
+        gap: 100px;
+        margin-top: -30px;
+        margin-left: 5px;
+      }
+      .app .ticket .details-top {
+        display: flex;
+        gap: 30px;
+      }
+      .app .ticket .details-bottom {
+        display: flex;
+        gap: 40px;
+        font-size: 0.9em;
+        color: #626262;
+        margin-top: -10px;
+        padding-bottom: 20px;
+      }
+      .app .basic {
+        border-top: 2px dotted #210951;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .app .basic img {
+        width: 200px;
+      }
+      .app .basic .ticket-number {
+        font-size: 0.8em;
+        margin-top: -10px;
+      }
+      .app .dot-1 {
+        background: #210951;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        position: relative;
+        top: -278px;
+        left: -7px;
+      }
+      .app .dot-2 {
+        background: #210951;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        position: relative;
+        top: -295px;
+        left: 295px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <h2 class="wht-txt title">TRISHUL ABES EC</h2>
+      <p class="wht-txt date">Unleash The Warrior Within.</p>
+
+      <div class="ticket">
+        <div class="airline">
+          <h2 class="rd-txt">VOICE IN THE SKY</h2>
+          <div class="from-to">
+            <h3>
+              R-1 : Escape Room<br />R-2 : Verbal Toughness<br />R-3 : Physical
+              Endurance
+            </h3>
+            <h3><i class="fas fa-plane"></i></h3>
+          </div>
+          <div class="time">
+            <h5>
+              Held on<br />
+              <br />
+              R-1 : 11th December <br />R-2 : 12th December <br />
+              R-3 : 13th December<br /><br />
+              Timing: 04:30 P.m. Onwards
+            </h5>
+          </div>
+          <!-- <div class="details-top">
+            <h2>B3</h2>
+            <h2>2005</h2>
+            <h2>11E</h2>
+            <h2>3</h2>
+          </div>
+          <div class="details-bottom">
+            <span>Gate</span><span>Flight</span><span>Seat</span
+            ><span>Group</span>
+          </div> -->
+        </div>
+        <div class="basic">
+          <br />
+          <img id="barcode" src="" alt="QR Code" />
+          <br />
+          <p id="123" class="ticket-number">Ticket number 000123456789</p>
+        </div>
+      </div>
+      <div class="dot-1"></div>
+      <div class="dot-2"></div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript">
+      function generateBarCode(nric) {
+        var url =
+          "https://api.qrserver.com/v1/create-qr-code/?data=" +
+          nric +
+          "&amp;size=50x50";
+        $("#barcode").attr("src", url);
+      }
+
+      function getprams() {
+        const searchParams = new URLSearchParams(window.location.search);
+
+        if (searchParams.has("key")) {
+          document.getElementById("123").innerHTML =
+            "TICKET ID : " + searchParams.get("key");
+          return searchParams.get("key");
+        } else {
+          return null;
+        }
+      }
+      generateBarCode(getprams());
+    </script>
+  </body>
+</html>
